@@ -5,15 +5,24 @@ from rest_framework.response import Response
 from . import models
 from . import serializers
 
-@detail_route(methods=['get','post'])
+
 class ProductViewSet(viewsets.ModelViewSet):
 	queryset = models.Product.objects.all()
 	serializer_class = serializers.ProductSerializer
 
+	@detail_route(methods=['post'])
+	def authors(self, request, pk=None):
+		product = self.get_object()
+		serializer = serializers.AuthorSerializer(product.authors.all(), many=True)
+		return Response(serializers.data)
+
+	@detail_route(methods=['post'])
 	def details(self, request, pk=None):
 		product = self.get_object()
 		serializer = serializers.DetailSerializer(product.details.all(), many=True)
 		return Response(serializer.data)
+
+
 
 
 class GenreViewSet(viewsets.ModelViewSet):
