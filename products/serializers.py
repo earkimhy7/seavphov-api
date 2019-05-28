@@ -50,7 +50,7 @@ class DetailSerializer(serializers.ModelSerializer):
 
 
 class GenreSerializer(serializers.ModelSerializer):
-	products = ProductSerializer(many=True)
+	products = ProductSerializer(many=True, read_only=True)
 
 	class Meta:	
 		fields = (

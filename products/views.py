@@ -23,12 +23,10 @@ class ProductViewSet(viewsets.ModelViewSet):
 		return Response(serializer.data)
 
 
-
-
 class GenreViewSet(viewsets.ModelViewSet):
 	queryset = models.Genre.objects.all()
 	serializer_class = serializers.GenreSerializer
-
+	
 
 class DetailViewSet(viewsets.ModelViewSet):
 	queryset = models.Detail.objects.all()

@@ -3,7 +3,7 @@ from django.db import models
 
 #this is the function to upload image
 def upload_image(instance, filename):
-	return '/'.join(['images', str(instance.name), filename])
+	return '/'.join(['products', str(instance.name), filename])
 
 
 #describe the main information of a product/book
