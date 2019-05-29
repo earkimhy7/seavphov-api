@@ -39,12 +39,12 @@ class Product(models.Model):
 # describe the detail of a a book
 class Detail(models.Model):
     ISBN = models.CharField(max_length=13, unique=True)
-    products = models.ForeignKey(
+    product = models.ForeignKey(
         'Product',
         on_delete=models.CASCADE,
         related_name='details'
     )
-    pages = models.IntegerField()
+    page = models.IntegerField()
     cover_type = models.ForeignKey(
         'CoverType',
         on_delete=models.SET_NULL,
@@ -68,11 +68,11 @@ class Detail(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        unique_together = ['products', 'cover_type', 'language', 'publisher', 'publish_date']
+        unique_together = ['product', 'cover_type', 'language', 'publisher', 'publish_date']
 
     def __str__(self):
         return '%s | %d | %s | %s | %s | %s' % (
-            self.ISBN, self.pages, self.cover_type, self.language, self.publisher, self.publish_date)
+            self.ISBN, self.page, self.cover_type, self.language, self.publisher, self.publish_date)
 
 
 # the genre of a book (Adventure, Action, etc.)
@@ -181,3 +181,30 @@ class Publisher(models.Model):
 
     def __str__(self):
         return '%s' % self.name
+
+
+# condition of the book
+class Condition(models.Model):
+    name = models.CharField(max_length=255, unique=True)
+    description = models.TextField(max_length=1000, blank=True, null=True)
+
+
+# inventory for seller
+class Inventory(models.Model):
+    detail = models.ForeignKey(
+        'Detail',
+        on_delete=models.CASCADE,
+    )
+    seller = models.ForeignKey(
+        'sellers.Seller',
+        on_delete=models.CASCADE,
+    )
+    condition = models.ForeignKey(
+        'Condition',
+        on_delete=models.CASCADE,
+        related_name='conditions',
+    )
+    price = models.DecimalField(max_digits=5, decimal_places=2)
+    quantity = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)

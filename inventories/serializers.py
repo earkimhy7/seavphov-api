@@ -7,8 +7,6 @@ from . import models
 class ProductSerializer(serializers.ModelSerializer):
     genre = serializers.StringRelatedField()
     authors = serializers.StringRelatedField(many=True)
-    # series = serializers.StringRelatedField(many=True)
-    details = 'DetailSerializer(many=True, read_only=True)'
 
     class Meta:
         fields = (
@@ -17,15 +15,12 @@ class ProductSerializer(serializers.ModelSerializer):
             'description',
             'genre',
             'authors',
-            # 'series',
             'thumbnail',
-            'details',
         )
         model = models.Product
 
 
 class DetailSerializer(serializers.ModelSerializer):
-    product = serializers.StringRelatedField()
     cover_type = serializers.StringRelatedField()
     language = serializers.StringRelatedField()
     publisher = serializers.StringRelatedField()
@@ -34,8 +29,7 @@ class DetailSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'ISBN',
-            'product',
-            'pages',
+            'page',
             'cover_type',
             'language',
             'publisher',

@@ -9,6 +9,7 @@ from . import serializers
 class ProductViewSet(viewsets.ModelViewSet):
 	queryset = models.Product.objects.all()
 	serializer_class = serializers.ProductSerializer
+	filter_fields = ('title', 'genre',)
 
 	@detail_route(methods=['get'])
 	def details(self, request, pk=None):
