@@ -7,7 +7,7 @@ from .serializers import SellerSerializer, SellerTypeSerializer, SellerImageSeri
 from rest_framework.parsers import FormParser, MultiPartParser
 
 
-#####  Seller_API  #####
+# Seller_API
 # List_user
 class SellerAPIViewAll(mixins.CreateModelMixin, generics.ListAPIView):
     lookup_field = 'pk'
@@ -28,7 +28,7 @@ class SellerRudView(generics.RetrieveUpdateDestroyAPIView):
         return Seller.objects.all()
 
 
-#####  Seller Type API  ######
+# Seller Type API
 # List seller type
 class SellerTypeAPIViewAll(mixins.CreateModelMixin, generics.ListAPIView):
     lookup_field = 'pk'
@@ -49,7 +49,7 @@ class SellerTypeRudView(generics.RetrieveUpdateDestroyAPIView):
         return SellerType.objects.all()
 
 
-#####  Seller Image API  ######
+# Seller Image API
 # List seller image
 class SellerImageAPIViewAll(mixins.CreateModelMixin, generics.ListAPIView):
     lookup_field = 'pk'
@@ -70,7 +70,7 @@ class SellerImageRudView(generics.RetrieveUpdateDestroyAPIView):
         return Image.objects.all()
 
 
-#####  Seller Manage Address Info #####
+# Seller Manage Address Info
 class SellerManageAddressInfoRudView(generics.RetrieveUpdateDestroyAPIView):
     lookup_field = 'pk'
     serializer_class = SellerManageAddressInfoSerializer
@@ -79,7 +79,7 @@ class SellerManageAddressInfoRudView(generics.RetrieveUpdateDestroyAPIView):
         return Seller.objects.all()
 
 
-##### Seller Update Profile ######
+# Seller Update Profile
 class SellerUpdateProfileRudView(generics.RetrieveUpdateDestroyAPIView):
     lookup_field = 'pk'
     serializer_class = SellerUpdateProfileSerializer
@@ -88,7 +88,7 @@ class SellerUpdateProfileRudView(generics.RetrieveUpdateDestroyAPIView):
         return Seller.objects.all()
 
 
-##### Seller Update Cover ######
+# Seller Update Cover
 class SellerUpdateCoverRudView(generics.RetrieveUpdateDestroyAPIView):
     lookup_field = 'pk'
     serializer_class = SellerUpdateCoverSerializer
