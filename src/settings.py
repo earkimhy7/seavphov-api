@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = 'l6nw7$elk7gi1mu83_#i6qk$ixv0uv7fm%l&4wi-*if2s1+$c)'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -42,6 +40,7 @@ INSTALLED_APPS = [
     'inventories',
     'sellers',
     'accounts',
+    'rest_registration',
 ]
 
 MIDDLEWARE = [
@@ -74,21 +73,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'src.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', 
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'seavphov_db',
         'USER': 'root',
         'PASSWORD': 'root',
-        'HOST': '127.0.0.1',   # Or an IP Address that your DB is hosted on
+        'HOST': '127.0.0.1',  # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -108,7 +105,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -121,7 +117,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
@@ -136,3 +131,20 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
 }
 
+REST_REGISTRATION = {
+    'REGISTER_VERIFICATION_ENABLED': True,
+    'REGISTER_EMAIL_VERIFICATION_ENABLED': True,
+    'RESET_PASSWORD_VERIFICATION_ENABLED': True,
+
+    'REGISTER_VERIFICATION_URL': 'https://127.0.0.1:8000/verify-user/',
+    'RESET_PASSWORD_VERIFICATION_URL': 'https://127.0.0.1:8000/accounts/reset-password/',
+    'REGISTER_EMAIL_VERIFICATION_URL': 'https://127.0.0.1:8000/accounts/verify-email/',
+
+    'VERIFICATION_FROM_EMAIL': 'no-reply@example.com',
+}
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'vannak.uc@gmail.com'
+EMAIL_HOST_PASSWORD = 'Pa$$w0rdvannak'

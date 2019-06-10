@@ -29,6 +29,7 @@ router.register('authors', views.AuthorViewSet)
 # router.register('series', views.SeriesViewSet)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/v1/', include(router.urls)),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+                  path('admin/', admin.site.urls),
+                  path('api/v1/', include(router.urls)),
+                  path('accounts/', include('rest_registration.api.urls')),
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
