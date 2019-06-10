@@ -22,12 +22,6 @@ class Product(models.Model):
         through_fields=('product', 'author'),
         related_name='product_list',
     )
-    # series = models.ManyToManyField(
-    #     'Series',
-    #     through='ProductSeries',
-    #     through_fields=('product', 'series'),
-    #     related_name='product_list',
-    # )
     thumbnail = models.ImageField(upload_to=upload_image, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -85,32 +79,6 @@ class Genre(models.Model):
 
     def __str__(self):
         return '%s' % self.name
-
-
-# the series of books
-# class Series(models.Model):
-#     name = models.CharField(max_length=255)
-#     description = models.TextField(max_length=1000, blank=True, null=True)
-#     created_at = models.DateTimeField(auto_now_add=True)
-#     updated_at = models.DateTimeField(auto_now=True)
-#
-#     def __str__(self):
-#         return '%s' % self.name
-
-
-# describe the book series if the book is in any series
-# class ProductSeries(models.Model):
-#     product = models.ForeignKey(
-#         'Product',
-#         on_delete=models.CASCADE,
-#     )
-#     series = models.ForeignKey(
-#         'Series',
-#         on_delete=models.CASCADE,
-#     )
-#     number = models.IntegerField()
-#     created_at = models.DateTimeField(auto_now_add=True)
-#     updated_at = models.DateTimeField(auto_now=True)
 
 
 # the information of an author
@@ -188,17 +156,22 @@ class Condition(models.Model):
     name = models.CharField(max_length=255, unique=True)
     description = models.TextField(max_length=1000, blank=True, null=True)
 
+    def __str__(self):
+        return '%s' % self.name
+
 
 # inventory for seller
 class Inventory(models.Model):
     detail = models.ForeignKey(
         'Detail',
         on_delete=models.CASCADE,
+        related_name='inventories',
     )
-    seller = models.ForeignKey(
-        'sellers.Seller',
-        on_delete=models.CASCADE,
-    )
+    seller = models.CharField(max_length=255)
+    # seller = models.ForeignKey(
+    #     'sellers.Seller',
+    #     on_delete=models.CASCADE,
+    # )
     condition = models.ForeignKey(
         'Condition',
         on_delete=models.CASCADE,
