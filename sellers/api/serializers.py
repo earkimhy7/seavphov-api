@@ -3,10 +3,10 @@ from sellers.models import Seller, SellerType, Image
 
 
 # ****************************** Manage Seller Merchant Information ******************************#
-###### Update Merchant ######
+# Update Merchant
 
 # ******************************  Manage Seller Contact Information *******************************#
-###### Update Contact Info ######
+# Update Contact Info
 class SellerContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = Seller
@@ -17,7 +17,7 @@ class SellerContactSerializer(serializers.ModelSerializer):
 
 
 # ******************************  Manage Seller info and Upgrade ****************************#
-###### Update Profile Pic ######
+# Update Profile Pic
 class SellerUpdateProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Seller
@@ -27,7 +27,7 @@ class SellerUpdateProfileSerializer(serializers.ModelSerializer):
         )
 
 
-###### Update Cover Picture ######
+# Update Cover Picture
 class SellerUpdateCoverSerializer(serializers.ModelSerializer):
     class Meta:
         model = Seller
@@ -37,7 +37,7 @@ class SellerUpdateCoverSerializer(serializers.ModelSerializer):
         )
 
 
-###### Seller Manage Address Information ######
+# Seller Manage Address Information
 class SellerManageAddressInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Seller
@@ -53,7 +53,7 @@ class SellerManageAddressInfoSerializer(serializers.ModelSerializer):
         )
 
 
-###### Image #####
+# Image
 class SellerImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Image
@@ -63,7 +63,7 @@ class SellerImageSerializer(serializers.ModelSerializer):
         )
 
 
-######  Seller Type #####
+#  Seller Type
 class SellerTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = SellerType
@@ -82,7 +82,7 @@ class SellerTypeSerializer(serializers.ModelSerializer):
         return value
 
 
-######  Seller  #####
+# Seller
 class SellerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Seller
@@ -113,7 +113,7 @@ class SellerSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("This email has already been used !")
         return value
 
-###### B Yong Code
+# B Yong Code
 # def create(self, validated_data):
 #     print(self.context.get('request').data)
 #     print(validated_data)
